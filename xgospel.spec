@@ -11,7 +11,7 @@ Group:		Games/Strategy
 Source0:	http://img.teaser.fr/~jlgailly/%{name}-%{version}.tar.bz2
 URL:		http://gailly.net/xgospel/index.html
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	XFree86-devel bison xpm-devel
+BuildRequires:	X11-devel bison xpm-devel
 
 %define	__prefix	%{_prefix}/X11R6
 
