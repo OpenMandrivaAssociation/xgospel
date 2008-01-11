@@ -41,17 +41,6 @@ mv *.xpm $RPM_BUILD_ROOT%{__prefix}/lib/xgospel
 mv my/*.xpm $RPM_BUILD_ROOT%{__prefix}/lib/xgospel
 mv *.res $RPM_BUILD_ROOT%{__prefix}/lib/xgospel
 
-mkdir -p $RPM_BUILD_ROOT%{_menudir}
-cat > $RPM_BUILD_ROOT%{_menudir}/%{name} <<EOF
-?package(%{name}): \
-command="%{__prefix}/bin/xgospel" \
-title="Xgospel" \
-longtitle="A graphical client for Internet Go Server" \
-icon="strategy_section.png" \
-needs="x11" \
-section="More Applications/Games/Strategy" \
-xdg="true"
-EOF
  
 mkdir -p %{buildroot}%{_datadir}/applications
 cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
@@ -83,6 +72,5 @@ rm -rf $RPM_BUILD_ROOT
 %{__prefix}/lib/xgospel/board.xpm
 %{__prefix}/lib/xgospel/pagoda.xpm
 %{__prefix}/lib/xgospel/XgospelIcon.xpm
-%{_menudir}/*
 %_datadir/applications/*
 
