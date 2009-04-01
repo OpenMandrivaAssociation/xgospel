@@ -1,6 +1,6 @@
 %define	name	xgospel
 %define	version	1.12d
-%define	release	%mkrel 15
+%define	release	%mkrel 16
 
 Summary:	An X11 client for Internet Go Server
 Name:		%{name}
@@ -9,11 +9,11 @@ Release:	%{release}
 License:	GPL
 Group:		Games/Strategy
 Source0:	http://img.teaser.fr/~jlgailly/%{name}-%{version}.tar.bz2
+Patch0:		xgospel-1.12d-fix-str-fmt.patch
+Patch1:		xgospel-1.12d-prefix.patch
 URL:		http://gailly.net/xgospel/index.html
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	X11-devel bison xpm-devel
-
-%define	__prefix	%{_prefix}/X11R6
 
 %description
 Xgospel is an X11 client for Internet Go Server, it provides a graphical 
@@ -22,25 +22,19 @@ interface with a lot of features to play on the Internet using IGS
 
 %prep
 %setup -q
+%patch0 -p1 -b .str
+%patch1 -p0
 
 %build
-mv resources.c resources.c.orig
-sed -e 's|board.xpm|/usr/X11R6/lib/xgospel/board.xpm|' <resources.c.orig >resources.c
-mv XGospel.res XGospel.res.orig
-sed -e 's|\(board.xpm\)|\(/usr/X11R6/lib/xgospel/board.xpm\)|' <XGospel.res.orig >XGospel.res
-CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{__prefix}
+%configure2_5x
 make
 
 %install
 rm -fr %buildroot
+%makeinstall
 
-mkdir -p $RPM_BUILD_ROOT%{__prefix}
-make prefix=$RPM_BUILD_ROOT%{__prefix} install 
-mkdir -p $RPM_BUILD_ROOT%{__prefix}/lib/xgospel
-mv *.xpm $RPM_BUILD_ROOT%{__prefix}/lib/xgospel
-mv my/*.xpm $RPM_BUILD_ROOT%{__prefix}/lib/xgospel
-mv *.res $RPM_BUILD_ROOT%{__prefix}/lib/xgospel
-
+mkdir -p %buildroot%{_datadir}/%{name}
+cp *.xpm *.res my/*.xpm %buildroot%{_datadir}/%{name}
  
 mkdir -p %{buildroot}%{_datadir}/applications
 cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
@@ -51,7 +45,7 @@ Exec=%{name}
 Icon=%{name}    
 Terminal=false  
 Type=Application
-Categories=X-MandrivaLinux-MoreApplications-Games-Strategy;Game;StrategyGame;
+Categories=Game;StrategyGame;
 EOF
 
 %if %mdkversion < 200900
@@ -70,11 +64,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root)
 %doc CHANGES FAQ INSTALL README README.1ST TODO my/COPYRIGHTS
-%dir %{__prefix}/lib/xgospel
-%{__prefix}/bin/*
-%{__prefix}/lib/xgospel/XGospel.res
-%{__prefix}/lib/xgospel/board.xpm
-%{__prefix}/lib/xgospel/pagoda.xpm
-%{__prefix}/lib/xgospel/XgospelIcon.xpm
-%_datadir/applications/*
-
+%{_bindir}/*
+%{_datadir}/xgospel
+%{_datadir}/applications/*.desktop
