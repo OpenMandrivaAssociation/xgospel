@@ -9,8 +9,8 @@ Release:	%{release}
 License:	GPL
 Group:		Games/Strategy
 Source0:	http://img.teaser.fr/~jlgailly/%{name}-%{version}.tar.bz2
-Patch0:		xgospel-1.12d-fix-str-fmt.patch
 Patch1:		xgospel-1.12d-prefix.patch
+Patch2:		xgospel-1.12d-new-server.patch
 URL:		http://gailly.net/xgospel/index.html
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	X11-devel bison xpm-devel
@@ -22,10 +22,11 @@ interface with a lot of features to play on the Internet using IGS
 
 %prep
 %setup -q
-%patch0 -p1 -b .str
 %patch1 -p0
+%patch2 -p0
 
 %build
+%define Werror_cflags %nil
 %configure2_5x
 make
 
