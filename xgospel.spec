@@ -1,6 +1,6 @@
 %define	name	xgospel
 %define	version	1.12d
-%define	release	%mkrel 17
+%define	release	%mkrel 18
 
 Summary:	An X11 client for Internet Go Server
 Name:		%{name}
@@ -9,6 +9,7 @@ Release:	%{release}
 License:	GPL
 Group:		Games/Strategy
 Source0:	http://img.teaser.fr/~jlgailly/%{name}-%{version}.tar.bz2
+Patch0:		menu-crash-fix.diff
 Patch1:		xgospel-1.12d-prefix.patch
 Patch2:		xgospel-1.12d-new-server.patch
 URL:		http://gailly.net/xgospel/index.html
@@ -23,6 +24,7 @@ interface with a lot of features to play on the Internet using IGS
 
 %prep
 %setup -q
+%patch0 -p0
 %patch1 -p0
 %patch2 -p0
 
