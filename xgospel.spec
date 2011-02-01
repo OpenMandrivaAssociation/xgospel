@@ -1,6 +1,6 @@
 %define	name	xgospel
 %define	version	1.12d
-%define	release	%mkrel 19
+%define	release	%mkrel 20
 
 Summary:	An X11 client for Internet Go Server
 Name:		%{name}
@@ -14,7 +14,12 @@ Patch1:		xgospel-1.12d-prefix.patch
 Patch2:		xgospel-1.12d-new-server.patch
 URL:		http://gailly.net/xgospel/index.html
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	X11-devel bison xpm-devel
+BuildRequires:	libx11-devel
+BuildRequires:	libxaw-devel
+BuildRequires:	libxmu-devel
+BuildRequires:	libxpm-devel
+BuildRequires:	libxt-devel
+BuildRequires:	bison
 BuildRequires:	imagemagick
 
 %description
