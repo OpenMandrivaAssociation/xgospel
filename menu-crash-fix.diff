@@ -1,0 +1,53 @@
+--- ../xgospel-1.12d-orig/my/TearofMenu.c	1994-12-17 14:42:12 +0900
++++ my/TearofMenu.c	2007-11-25 00:52:19 +0900
+@@ -84,6 +84,21 @@
+ 
+ WidgetClass tearofMenuWidgetClass = (WidgetClass) &tearofMenuClassRec;
+ 
++/* Call an action in the simpleMenu class */
++static void smCallActionProc(Widget w, String action, XEvent *event, String *params, Cardinal *n)
++{
++    XtActionList   Actions;
++    Cardinal       NrActions, i;
++
++    XtGetActionList(simpleMenuWidgetClass, &Actions, &NrActions);
++    for (i = 0; i < NrActions; i++) {
++	if (strcmp(Actions[i].string, action) == 0) {
++	    (*Actions[i].proc)(w, event, params, n);
++	    break;
++	}
++    }
++}
++
+ static void Highlight(Widget w, XEvent *event, String *params, Cardinal *n)
+ {
+     XtActionList   Actions;
+@@ -94,9 +109,13 @@
+     switch(tmw->tearof_menu.state) {
+       case SIMPLEMENUSTATE:
+       case POPUPMENUSTATE:
++#if 0
+         XtGetActionList(simpleMenuWidgetClass, &Actions, &NrActions);
+         /* We really should look up if offset 0 is highlight --Ton */
+         (*Actions[0].proc)(w, event, params, n);
++#else
++	smCallActionProc(w, "highlight", event, params, n);
++#endif
+         break;
+       case BEINGTEAREDSTATE:
+         XtVaSetValues(w,
+@@ -169,9 +188,14 @@
+           case SIMPLEMENUSTATE:
+             XtPopdown(popup_shell);
+           case POPUPMENUSTATE:
++#if 0
+             XtGetActionList(simpleMenuWidgetClass, &Actions, &NrActions);
+             (*Actions[1].proc)(w, event, params, n); /* notify      */
+             (*Actions[2].proc)(w, event, params, n); /* unhighlight */
++#else
++	    smCallActionProc(w, "notify", event, params, n);
++	    smCallActionProc(w, "unhighlight", event, params, n);
++#endif
+             break;
+           case BEINGTEAREDSTATE:
+             Highlight(popup_shell, event, NULL, &m);

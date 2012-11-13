@@ -1,0 +1,22 @@
+--- XGospel.res~	1999-07-19 14:17:23.000000000 +0200
++++ XGospel.res	2009-04-01 11:13:35.000000000 +0200
+@@ -6,7 +6,7 @@
+ xgospel*Password:                 yourpassword
+ 
+ ! put here the location (full path name) of board.xpm:
+-!xgospel*board.backgroundPixmap:      pixmap(board.xpm)
++!xgospel*board.backgroundPixmap:      pixmap(/usr/share/xgospel/board.xpm)
+ 
+ !xgospel*games.?.width:        520
+ !xgospel*games.collect.height: 600
+--- resources.c~	1999-10-27 15:11:20.000000000 +0200
++++ resources.c	2009-04-01 11:14:31.000000000 +0200
+@@ -1687,7 +1687,7 @@
+     (String) "*input*editType:                     edit",
+     (String) "*chatter*editType:                   edit",
+     (String) "*board.background:                   #FFA54F",
+-    (String) "*board.backgroundPixmap: pixmap(board.xpm)",
++    (String) "*board.backgroundPixmap: pixmap(/usr/share/xgospel/board.xpm)",
+     (String) "*StripChart.jumpScroll:              1",
+     (String) "*background:                         #BFD8D8",
+     (String) "*font:"

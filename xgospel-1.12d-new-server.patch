@@ -1,0 +1,11 @@
+--- xgospel.c~	2009-04-05 11:36:50.000000000 +0200
++++ xgospel.c	2009-04-05 11:39:59.000000000 +0200
+@@ -64,7 +64,7 @@
+ "xgospel*version: %s\n"
+ 
+ /* #define SITE    "igs.joyjoy.net" */
+-#define SITE "210.134.78.91"
++#define SITE "igs.joyjoy.net"
+ 
+ /* We measure the roundtrip time (to the X server) every RETRIP seconds */
+ #define RETRIP    5
