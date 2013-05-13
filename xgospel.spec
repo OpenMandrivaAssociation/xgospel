@@ -14,11 +14,11 @@ Patch1:		xgospel-1.12d-prefix.patch
 Patch2:		xgospel-1.12d-new-server.patch
 URL:		http://gailly.net/xgospel/index.html
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	libx11-devel
-BuildRequires:	libxaw-devel
-BuildRequires:	libxmu-devel
-BuildRequires:	libxpm-devel
-BuildRequires:	libxt-devel
+BuildRequires:	pkgconfig(x11)
+BuildRequires:	pkgconfig(xaw7)
+BuildRequires:	pkgconfig(xmu)
+BuildRequires:	pkgconfig(xpm)
+BuildRequires:	pkgconfig(xt)
 BuildRequires:	bison
 BuildRequires:	imagemagick
 
