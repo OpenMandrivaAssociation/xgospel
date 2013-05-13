@@ -1,6 +1,6 @@
 %define	name	xgospel
 %define	version	1.12d
-%define	release	%mkrel 20
+%define release 	21
 
 Summary:	An X11 client for Internet Go Server
 Name:		%{name}
@@ -13,7 +13,6 @@ Patch0:		menu-crash-fix.diff
 Patch1:		xgospel-1.12d-prefix.patch
 Patch2:		xgospel-1.12d-new-server.patch
 URL:		http://gailly.net/xgospel/index.html
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xaw7)
 BuildRequires:	pkgconfig(xmu)
