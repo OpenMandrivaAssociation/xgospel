@@ -1,6 +1,6 @@
 %define	name	xgospel
 %define	version	1.12d
-%define release 	21
+%define release 	22
 
 Summary:	An X11 client for Internet Go Server
 Name:		%{name}
