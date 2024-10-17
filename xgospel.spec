@@ -12,7 +12,7 @@ Source0:	http://img.teaser.fr/~jlgailly/%{name}-%{version}.tar.bz2
 Patch0:		menu-crash-fix.diff
 Patch1:		xgospel-1.12d-prefix.patch
 Patch2:		xgospel-1.12d-new-server.patch
-URL:		http://gailly.net/xgospel/index.html
+URL:		https://gailly.net/xgospel/index.html
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xaw7)
 BuildRequires:	pkgconfig(xmu)
